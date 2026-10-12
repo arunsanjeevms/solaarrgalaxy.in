@@ -195,7 +195,7 @@
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr);
     align-items: center;
     gap: clamp(28px, 5vw, 72px);
-    padding-block: clamp(12px, 3vw, 40px) clamp(36px, 5vw, 72px);
+    padding-block: clamp(12px, 3vw, 40px) clamp(12px, 2vw, 24px);
   }
   .hero-copy { min-width: 0; }
 
@@ -363,48 +363,33 @@
   .art { width: 100%; height: auto; overflow: visible; }
 
   /* ---------- Footer credit line ---------- */
-  .site-footer { padding-block: 0 18px; }
+  .site-footer { padding-block: 0 12px; }
   .footer-bar {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px 32px;
-    padding-top: 16px;
-    border-top: 1px solid var(--line);
-    font-size: .8125rem;
-    line-height: 1.5;
-    color: var(--muted);
-  }
-  .fcredit { display: flex; align-items: center; gap: 12px; min-width: 0; margin: 0; }
-  .fcredit p { margin: 0; }
-  .fcredit strong { font-weight: 600; color: var(--ink); }
-  .fcredit .sep { margin-inline: 6px; color: rgba(14, 34, 56, .3); }
-  .fcredit .role { font-weight: 500; color: var(--green-deep); }
-  .fcredit a {
-    display: inline-flex;
-    align-items: center;
-    gap: 3px;
-    margin: -10px 0 -10px 6px;
-    padding-block: 10px;
-    font-weight: 600;
-    color: var(--sky-deep);
-    text-decoration: none;
-  }
-  .fcredit a span:first-child { border-bottom: 1px solid currentColor; border-bottom-color: rgba(14, 34, 56, .2); transition: border-color .2s ease; }
-  .fcredit a:hover span:first-child { border-bottom-color: currentColor; }
-  .fcredit a svg { width: 13px; height: 13px; transition: transform .2s ease; }
-  .fcredit a:hover svg { transform: translate(2px, -2px); }
-  .copy {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 4px 16px;
-    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--line);
     font-size: .75rem;
+    line-height: 1.4;
     color: var(--muted);
   }
-  .copy p { margin: 0; }
+  .footer-bar p { margin: 0; }
+  .footer-bar strong { font-weight: 600; color: var(--ink); }
+  .footer-bar a {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-weight: 600;
+    color: var(--sky-deep);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .footer-bar a span { border-bottom: 1px solid rgba(15, 27, 45, .2); transition: border-color .2s ease; }
+  .footer-bar a:hover span { border-bottom-color: currentColor; }
+  .footer-bar a svg { width: 11px; height: 11px; transition: transform .2s ease; }
+  .footer-bar a:hover svg { transform: translate(2px, -2px); }
 
   /* ---------- Illustration animation (11 s seamless loop) ---------- */
   .art { --cycle: 11s; --ease: cubic-bezier(.22, .61, .36, 1); }
@@ -482,22 +467,20 @@
   /* ---------- Responsive ---------- */
   @media (min-width: 768px) {
     .page { min-height: 100vh; min-height: 100svh; }
-    .hero { min-height: min(780px, calc(100svh - 96px)); }
+    .hero { min-height: min(720px, calc(100svh - 64px)); }
   }
   @media (max-width: 1023px) {
     .hero .wrap { grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr); gap: clamp(24px, 4vw, 40px); }
     h1 { font-size: clamp(2.2rem, .95rem + 3.6vw, 3.2rem); }
   }
   @media (max-width: 767px) {
-    .hero .wrap { grid-template-columns: minmax(0, 1fr); gap: 24px; padding-block: 8px 36px; }
+    .hero .wrap { grid-template-columns: minmax(0, 1fr); gap: 24px; padding-block: 8px 16px; }
     h1 { font-size: clamp(2.1rem, 1.15rem + 4.8vw, 3.1rem); }
     .lead { max-width: 46ch; }
     .hero-art { width: 100%; max-width: 580px; margin-inline: auto; }
     .orbit { display: none; }
   }
   @media (max-width: 599px) {
-    .footer-bar { gap: 14px; }
-    .fcredit { align-items: flex-start; }
     .art .m-hide { display: none; }
     .art .float { animation: none; }
     .domain { padding: 6px 11px; font-size: .8125rem; }
@@ -936,16 +919,8 @@
     <div class="wrap">
       <h2 class="sr-only">Partners &amp; Credits</h2>
       <div class="footer-bar">
-        <div class="fcredit">
-          <p><strong>SIGARAM</strong><span class="sep" aria-hidden="true">&middot;</span>Associated with Karur Smart City<span class="sep" aria-hidden="true">&middot;</span><span class="role">Digital Marketing &amp; Advertising Partner</span></p>
-        </div>
-        <p class="fcredit">
-          <span>Website Designed &amp; Developed by <strong>Aalvinai Technologies</strong><a href="https://aalvinai.in" target="_blank" rel="noopener noreferrer"><span>aalvinai.in</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg><span class="sr-only">(opens in a new tab)</span></a></span>
-        </p>
-      </div>
-      <div class="copy">
-        <p>&copy; <span id="year">2026</span> Solaarr Galaxy. All rights reserved.</p>
-        <p>solaarrgalaxy.in</p>
+        <p>&copy; <span id="year">2026</span> Solaarr Galaxy</p>
+        <p>Marketing by <strong>SIGARAM</strong> &middot; Built by <a href="https://aalvinai.in" target="_blank" rel="noopener noreferrer"><span>Aalvinai Technologies</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg><span class="sr-only">(opens in a new tab)</span></a></p>
       </div>
     </div>
   </footer>
