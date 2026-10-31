@@ -158,13 +158,28 @@ nav a:hover::after { width: 100%; }
 .term span { font-size: 13.5px; color: #c4c3e0; }
 
 /* Process */
-.steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; counter-reset: step; position: relative; }
-.steps::before { content: ""; position: absolute; top: 30px; left: 10%; right: 10%; height: 2px; background: repeating-linear-gradient(90deg, var(--line) 0 8px, transparent 8px 14px); }
-.step { text-align: center; position: relative; }
-.step .num { width: 60px; height: 60px; border-radius: 50%; margin: 0 auto 18px; display: grid; place-items: center; font: 800 22px/1 var(--font-head); background: #fff; border: 2px solid var(--navy); color: var(--navy); position: relative; }
+.steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; position: relative; }
+.step { --s: 0; text-align: center; position: relative; }
+.step:nth-child(2) { --s: 1; } .step:nth-child(3) { --s: 2; } .step:nth-child(4) { --s: 3; } .step:nth-child(5) { --s: 4; }
+/* Dashed connector from each step to the next */
+.step:not(:last-child)::after { content: ""; position: absolute; top: 29px; left: calc(50% + 38px); width: calc(100% + 18px - 76px); height: 2px; background: repeating-linear-gradient(90deg, rgba(54, 51, 130, .3) 0 8px, transparent 8px 14px); transform-origin: left; }
+.step .num { width: 60px; height: 60px; border-radius: 50%; margin: 0 auto 18px; display: grid; place-items: center; font: 800 22px/1 var(--font-head); background: #fff; border: 2px solid var(--navy); color: var(--navy); position: relative; transition: background .25s, color .25s; }
 .step:nth-child(even) .num { border-color: var(--red); color: var(--red); }
+.step:hover .num { background: var(--navy); color: #fff; }
+.step:nth-child(even):hover .num { background: var(--red); }
 .step h4 { font-size: 17px; margin-bottom: 6px; }
 .step p { font-size: 14px; color: var(--muted); }
+/* Steps play in sequence when scrolled into view (js/script.js adds .play): number pops, text rises, connector draws, then a ring pulses through the steps */
+.js .steps:not(.play) .num, .js .steps:not(.play) .step > div { opacity: 0; }
+.js .steps:not(.play) .step::after { transform: scaleX(0); }
+.steps.play .num { animation: stepPop .6s cubic-bezier(.34, 1.56, .64, 1) calc(.2s + var(--s) * .45s) both; }
+.steps.play .step > div { animation: fadeUp .6s ease calc(.35s + var(--s) * .45s) both; }
+.steps.play .step::after { animation: drawX .4s ease-out calc(.6s + var(--s) * .45s) both; }
+.steps.play .num::after { content: ""; position: absolute; inset: -2px; border-radius: 50%; border: 2px solid currentColor; opacity: 0; animation: ring 7.5s ease-out calc(2.8s + var(--s) * 1.5s) infinite; }
+@keyframes stepPop { from { opacity: 0; transform: scale(.3); } }
+@keyframes drawX { from { transform: scaleX(0); } }
+@keyframes drawY { from { transform: scaleY(0); } }
+@keyframes ring { 0% { opacity: .55; transform: scale(1); } 15%, 100% { opacity: 0; transform: scale(1.7); } }
 
 /* Calculator */
 .calc { background: var(--cream); }
@@ -335,8 +350,10 @@ footer a:hover { color: #fff; }
   .hero .wrap, .pkg-grid, .about-grid, .contact-grid, .calc-box { grid-template-columns: minmax(0, 1fr); }
   .hero-art { max-width: 520px; margin-inline: auto; }
   .steps { grid-template-columns: 1fr; gap: 26px; }
-  .steps::before { display: none; }
   .step { display: grid; grid-template-columns: 60px 1fr; gap: 18px; text-align: left; align-items: start; }
+  .step:not(:last-child)::after { top: 66px; left: 29px; width: 2px; height: calc(100% - 46px); background: repeating-linear-gradient(180deg, rgba(54, 51, 130, .3) 0 8px, transparent 8px 14px); transform-origin: top; }
+  .js .steps:not(.play) .step::after { transform: scaleY(0); }
+  .steps.play .step::after { animation-name: drawY; }
   .step .num { margin: 0; }
   .why-grid, .products-grid { grid-template-columns: 1fr 1fr; }
   .founder-grid { grid-template-columns: minmax(0, 420px); }

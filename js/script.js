@@ -41,6 +41,13 @@ const io = new IntersectionObserver(entries => {
 }, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
+// Process steps: play the step-by-step animation once the steps scroll into view
+const steps = document.querySelector('.steps');
+const stepsIo = new IntersectionObserver(entries => {
+  if (entries[0].isIntersecting) { steps.classList.add('play'); stepsIo.disconnect(); }
+}, { threshold: 0.3 });
+stepsIo.observe(steps);
+
 // Savings estimator: ~4 units/kW/day (~120/month), ~Rs 6/unit, ~100 sq.ft per kW
 const units = document.getElementById('units');
 const fmt = n => n.toLocaleString('en-IN');
