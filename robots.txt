@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://solaarrgalaxy.in/sitemap.xml
