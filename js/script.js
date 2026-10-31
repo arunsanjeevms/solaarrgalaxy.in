@@ -74,4 +74,10 @@ waSend.addEventListener('click', e => {
 });
 buildWa();
 
+// FAQ: keep only one answer open at a time (backup for browsers that ignore <details name="faq">)
+const faqItems = document.querySelectorAll('.faq-item');
+faqItems.forEach(item => item.addEventListener('toggle', () => {
+  if (item.open) faqItems.forEach(other => { if (other !== item) other.open = false; });
+}));
+
 document.getElementById('yr').textContent = new Date().getFullYear();
