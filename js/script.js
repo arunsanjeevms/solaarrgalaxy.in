@@ -21,6 +21,19 @@ nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
   menuBtn.setAttribute('aria-expanded', false);
 }));
 
+// Mobile marquees: duplicate each list once so it can scroll in a seamless loop (duplicates are hidden on wider screens)
+document.querySelectorAll('.marquee-track').forEach(track => {
+  [...track.children].forEach(item => {
+    const clone = item.cloneNode(true);
+    clone.classList.remove('reveal');
+    clone.setAttribute('aria-hidden', 'true');
+    clone.dataset.clone = '';
+    // Keep links in the hidden copies out of the keyboard tab order
+    [clone, ...clone.querySelectorAll('a')].forEach(el => { if (el.matches('a')) el.tabIndex = -1; });
+    track.append(clone);
+  });
+});
+
 // Gentle rise on scroll (content is always visible)
 document.documentElement.classList.add('js');
 const io = new IntersectionObserver(entries => {
