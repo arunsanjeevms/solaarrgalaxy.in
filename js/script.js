@@ -1,4 +1,4 @@
-// Page loader: keep it up for at least 2s so the quote can be read, then fade it out once the page has loaded
+// Page loader (home page only): keep it up for at least 2s so the quote can be read, then fade it out once the page has loaded
 const loader = document.getElementById('loader');
 function hideLoader() {
   setTimeout(() => {
@@ -6,8 +6,10 @@ function hideLoader() {
     setTimeout(() => loader.remove(), 700);
   }, Math.max(0, 2000 - performance.now()));
 }
-if (document.readyState === 'complete') hideLoader();
-else window.addEventListener('load', hideLoader);
+if (loader) {
+  if (document.readyState === 'complete') hideLoader();
+  else window.addEventListener('load', hideLoader);
+}
 
 // Mobile menu
 const nav = document.getElementById('nav');
@@ -43,10 +45,12 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
 // Process steps: play the step-by-step animation once the steps scroll into view
 const steps = document.querySelector('.steps');
-const stepsIo = new IntersectionObserver(entries => {
-  if (entries[0].isIntersecting) { steps.classList.add('play'); stepsIo.disconnect(); }
-}, { threshold: 0.3 });
-stepsIo.observe(steps);
+if (steps) {
+  const stepsIo = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) { steps.classList.add('play'); stepsIo.disconnect(); }
+  }, { threshold: 0.3 });
+  stepsIo.observe(steps);
+}
 
 // Savings estimator: ~4 units/kW/day (~120/month), ~Rs 6/unit, ~100 sq.ft per kW
 const units = document.getElementById('units');
@@ -62,8 +66,10 @@ function calc() {
   document.getElementById('save').textContent = '₹' + fmt(saved);
   document.getElementById('area').textContent = '~' + fmt(kw * 100) + ' sq.ft';
 }
-units.addEventListener('input', calc);
-calc();
+if (units) {
+  units.addEventListener('input', calc);
+  calc();
+}
 
 // Enquiry form -> WhatsApp
 const form = document.getElementById('enquiry');
@@ -73,13 +79,15 @@ function buildWa() {
   const msg = `Hi Solaarr Galaxy,\nName: ${f.name.value}\nPhone: ${f.phone.value}\nCity: ${f.city.value}\nInterested in: ${f.need.value}\n${f.msg.value}`;
   waSend.href = 'https://wa.me/919952425372?text=' + encodeURIComponent(msg);
 }
-form.addEventListener('input', buildWa);
-form.addEventListener('change', buildWa);
-form.addEventListener('submit', e => e.preventDefault());
-waSend.addEventListener('click', e => {
-  if (!form.checkValidity()) { e.preventDefault(); form.reportValidity(); }
-});
-buildWa();
+if (form) {
+  form.addEventListener('input', buildWa);
+  form.addEventListener('change', buildWa);
+  form.addEventListener('submit', e => e.preventDefault());
+  waSend.addEventListener('click', e => {
+    if (!form.checkValidity()) { e.preventDefault(); form.reportValidity(); }
+  });
+  buildWa();
+}
 
 // FAQ: keep only one answer open at a time (backup for browsers that ignore <details name="faq">)
 const faqItems = document.querySelectorAll('.faq-item');

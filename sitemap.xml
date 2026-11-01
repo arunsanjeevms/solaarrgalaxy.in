@@ -15,4 +15,29 @@
     <image:image><image:loc>https://solaarrgalaxy.in/assets/products/biometric-attendance.jpg</image:loc></image:image>
     <image:image><image:loc>https://solaarrgalaxy.in/assets/karthikeyan.jpg</image:loc></image:image>
   </url>
+  <url>
+    <loc>https://solaarrgalaxy.in/solar-products/</loc>
+    <lastmod>2026-11-01</lastmod>
+  </url>
+  <url>
+    <loc>https://solaarrgalaxy.in/solar-subsidy/</loc>
+    <lastmod>2026-11-01</lastmod>
+  </url>
+  <url>
+    <loc>https://solaarrgalaxy.in/solar-savings-calculator/</loc>
+    <lastmod>2026-11-01</lastmod>
+  </url>
+  <url>
+    <loc>https://solaarrgalaxy.in/about/</loc>
+    <lastmod>2026-11-01</lastmod>
+    <image:image><image:loc>https://solaarrgalaxy.in/assets/karthikeyan.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://solaarrgalaxy.in/faq/</loc>
+    <lastmod>2026-11-01</lastmod>
+  </url>
+  <url>
+    <loc>https://solaarrgalaxy.in/contact/</loc>
+    <lastmod>2026-11-01</lastmod>
+  </url>
 </urlset>

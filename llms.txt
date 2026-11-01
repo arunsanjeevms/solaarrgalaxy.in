@@ -32,8 +32,10 @@ Loom Solar, UTL, V-Guard, Microtek, Okaya, Premier
 
 ## Pages
 
-- [Home](https://solaarrgalaxy.in/): products, subsidy package, savings estimator, founders and contact
-- [Products](https://solaarrgalaxy.in/#products)
-- [3 kW subsidy package](https://solaarrgalaxy.in/#package)
-- [Solar FAQ](https://solaarrgalaxy.in/#faq)
-- [Contact and free quote](https://solaarrgalaxy.in/#contact)
+- [Home](https://solaarrgalaxy.in/): overview of products, subsidy package, savings estimator, founder and contact
+- [Products](https://solaarrgalaxy.in/solar-products/)
+- [3 kW subsidy package](https://solaarrgalaxy.in/solar-subsidy/)
+- [Solar savings calculator](https://solaarrgalaxy.in/solar-savings-calculator/)
+- [About us and founder](https://solaarrgalaxy.in/about/)
+- [Solar FAQ](https://solaarrgalaxy.in/faq/)
+- [Contact and free quote](https://solaarrgalaxy.in/contact/)
